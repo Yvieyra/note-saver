@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs'); // db.json file  will be used to store and retreive notes using fs module 
-//Do I need middleware?
+const { clog } = require('./middleware/clog'); //Do i need this middleware?
 // const api = require('./db/repos.json');
 // const api = require('./public/index.html');
 const notes = require('./db/db.json');
@@ -12,6 +12,7 @@ const PORT = process.env.port || 3001; //Heroku deployment configured port or 30
 const app = express();
 
 // Middleware for parsing JSON and urlencoded form data
+app.use(clog);
 app.use(express.json()); //midlleware allows us to grab data in the body
 app.use(express.urlencoded({ extended: true })); //middleware for parsing of URL encoded data into objects with key value pairs 
 // app.use('/api', api); //do we need this?
@@ -47,7 +48,7 @@ app.post('/api/notes', (req, res) => {
       note_id: uuid(),
     };
 
-    readAndAppend(newNotes, './db/repos.json');
+    readAndAppend(newNotes, './db/db.json');
 
     const response = {
       status: 'success',
@@ -62,7 +63,8 @@ app.post('/api/notes', (req, res) => {
 
 
 //  You'll need to find a way to give each note a unique id when it's saved (look into npm packages that could do this for you).
-
+//consider adding middleware, look into this
+//open console to find error in there as well 
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
