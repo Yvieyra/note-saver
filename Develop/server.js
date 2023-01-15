@@ -2,8 +2,9 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs'); // db.json file  will be used to store and retreive notes using fs module 
 //Do I need middleware?
-const api = require('./public/index.html');
-const notes = require('./db/repos.json');
+// const api = require('./db/repos.json');
+// const api = require('./public/index.html');
+const notes = require('./db/db.json');
 const uuid = require('./helpers/uuid'); //use this one or the v4 generated one from mini project, any difference?
 
 const PORT = process.env.port || 3001; //Heroku deployment configured port or 3001
@@ -13,7 +14,7 @@ const app = express();
 // Middleware for parsing JSON and urlencoded form data
 app.use(express.json()); //midlleware allows us to grab data in the body
 app.use(express.urlencoded({ extended: true })); //middleware for parsing of URL encoded data into objects with key value pairs 
-app.use('/api', api); //do we need this?
+// app.use('/api', api); //do we need this?
 
 app.use(express.static('public')); //middleware that serves static files from public folder 
 
@@ -29,7 +30,7 @@ app.get('*', (req, res) =>
 
 // GET /api/notes should READ the db.json file and RETURN all saved notes as JSON.
 app.get('/api/notes', (req, res) => 
-  readFromFile('./db/repos.json').then((data) => res.json(JSON.parse(data)))
+  readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
 );
 
 // POST /api/notes should RECEIVE a new note to save on the request body, ADD it to the db.json file, and THEN RETURN the new note to the client.
