@@ -2,8 +2,8 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs'); // db.json file  will be used to store and retreive notes using fs module 
 const { clog } = require('./middleware/clog'); //Do i need this middleware?
-// const api = require('./db/repos.json');
-// const api = require('./public/index.html');
+//Do I need to require util file?
+// const api = require('./public/index.js');
 const notes = require('./db/db.json');
 const uuid = require('./helpers/uuid'); //use this one or the v4 generated one from mini project, any difference?
 
@@ -30,21 +30,27 @@ app.get('*', (req, res) =>
 );
 
 // GET /api/notes should READ the db.json file and RETURN all saved notes as JSON.
-app.get('/api/notes', (req, res) => 
+app.get('/api/notes', (req, res) => {
+  console.info(`${req.method} request received for notes`);
+
   readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
-);
+});
+
 
 // POST /api/notes should RECEIVE a new note to save on the request body, ADD it to the db.json file, and THEN RETURN the new note to the client.
 app.post('/api/notes', (req, res) => {
+ // Log that a POST request was received
+ console.info(`${req.method} request received to add a review`);
+
   // Destructuring assignment for the items in req.body
-  const {noteTitle, noteText} = req.body;
+  const {title, text} = req.body;
 
   // If all the required properties are present
-  if (noteTitle && noteText) {
+  if (title && text) {
     // Variable for the object we will save
     const newNotes = {
-      noteTitle,
-      noteText,
+      title,
+      text,
       note_id: uuid(),
     };
 
