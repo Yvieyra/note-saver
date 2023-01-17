@@ -2,11 +2,10 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs'); // db.json file  will be used to store and retreive notes using fs module 
 const { clog } = require('./middleware/clog'); //Do i need this middleware?
-//Do I need to require util file?
 // const api = require('./scripts/index');
 const notes = require('./db/db.json');
 const uuid = require('./helpers/uuid'); //use this one or the v4 generated one from mini project, any difference?
-const { readAndAppend, readFromFile } = require('./helpers/fsUtils'); 
+const { readAndAppend, readFromFile} = require('./helpers/fsUtils'); 
 
 const PORT = process.env.port || 3001; //Heroku deployment configured port or 3001
 
@@ -25,14 +24,10 @@ app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-//GET * will return the index.html file
-app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))
-);
 
 // GET /api/notes should READ the db.json file and RETURN all saved notes as JSON.
 app.get('/api/notes', (req, res) => {
-  console.info(`${req.method} request received for notes`);
+  console.info(`${req.method} request received for notes`); // NOT LOGGING IN CONSOLE
 
   readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
 });
@@ -41,7 +36,7 @@ app.get('/api/notes', (req, res) => {
 // POST /api/notes should RECEIVE a new note to save on the request body, ADD it to the db.json file, and THEN RETURN the new note to the client.
 app.post('/api/notes', (req, res) => {
  // Log that a POST request was received
- console.info(`${req.method} request received to add a review`);
+ console.info(`${req.method} request received to add a note`);
 
   // Destructuring assignment for the items in req.body
   const {title, text} = req.body;
@@ -68,9 +63,10 @@ app.post('/api/notes', (req, res) => {
   }
 });
 
-
-//  You'll need to find a way to give each note a unique id when it's saved (look into npm packages that could do this for you).
-//consider adding middleware, look into this
+//GET * will return the index.html file
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, '/public/index.html'))
+);
 //open console to find error in there as well 
 
 app.listen(PORT, () =>
