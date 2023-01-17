@@ -3,9 +3,10 @@ const path = require('path');
 const fs = require('fs'); // db.json file  will be used to store and retreive notes using fs module 
 const { clog } = require('./middleware/clog'); //Do i need this middleware?
 //Do I need to require util file?
-// const api = require('./public/index.js');
+// const api = require('./scripts/index');
 const notes = require('./db/db.json');
 const uuid = require('./helpers/uuid'); //use this one or the v4 generated one from mini project, any difference?
+const { readAndAppend, readFromFile } = require('./helpers/fsUtils'); 
 
 const PORT = process.env.port || 3001; //Heroku deployment configured port or 3001
 
