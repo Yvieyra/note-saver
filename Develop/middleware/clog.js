@@ -1,9 +1,9 @@
-// Custom middleware that logs out the type and path of each request to the server
+// Custom middleware that logs out the type and path of each request to the server and gives each request method a color for the programmer to refer to in the terminal.
 const clog = (req, res, next) => {
     const fgCyan = '\x1b[36m';
     switch (req.method) {
       case 'GET': {
-        console.info(`📗 ${fgCyan}${req.method} request to ${req.path}`);
+        console.info(`📗 ${fgCyan}${req.method} request to ${req.path}`); 
         break;
       }
       case 'POST': {
