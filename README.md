@@ -6,8 +6,11 @@ User can save notes on program for multiple to do tasks. The user is able to add
  ## Table of Contents
 
 [Description](#description)
+
 [Installation](#installation)
+
 [Usage](#usage)
+
 [Credits](#credits)
 
 ## Installation 
@@ -28,6 +31,8 @@ Express node.js  & uuid node.js module
 
 ## Project Links 
 Yessenia's GitHub URL: https://github.com/Yvieyra
+
 Repository GitHub URL: https://github.com/Yvieyra/note-saver.git
+
 Deployed site URL: 
 
