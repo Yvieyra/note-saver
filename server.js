@@ -5,7 +5,7 @@ const { clog } = require('./middleware/clog'); //Do i need this middleware?
 const uuid = require('./helpers/uuid'); //use this one or the v4 generated one from mini project, any difference?
 const { readAndAppend, readFromFile, writeToFile} = require('./helpers/fsUtils'); 
 
-const PORT = process.env.port || 3001; //Heroku deployment configured port or 3001
+const PORT = process.env.PORT || 3001; //Heroku deployment configured port or 3001
 
 const app = express();
 
