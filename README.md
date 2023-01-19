@@ -14,7 +14,7 @@ User can save notes on program for multiple to do tasks. The user is able to add
 [Credits](#credits)
 
 ## Installation 
-The user can visit the deployed site online at 
+The user can visit the deployed site online at https://hidden-journey-34431.herokuapp.com/
 
 ## Usage 
 The user will select the "Get Started" button on the landing page. Any previously saved notes on the site will appear on the left hand side. On the right side there will be two text areas (tite and actual note) where the user can type in their notes. There will be a save icon on the right top corner that the user can select to save the note, once this is pressed, the note will appear on the left hand side. The user may also create a new note by selecting the plus sign located next to the save icon. 
@@ -34,5 +34,5 @@ Yessenia's GitHub URL: https://github.com/Yvieyra
 
 Repository GitHub URL: https://github.com/Yvieyra/note-saver.git
 
-Deployed site URL: 
+Deployed site URL: https://hidden-journey-34431.herokuapp.com/
 
